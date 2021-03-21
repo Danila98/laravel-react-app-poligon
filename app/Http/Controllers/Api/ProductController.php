@@ -4,11 +4,18 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
-class ProductController extends Controller
+use App\Models\Product;
+class ProductController extends ApiController
 {
     public function index()
     {
-        return 'kuku';
+        $products = Product::all();
+    
+        return $this->sendResponse($products, 'Успешно.');
+    }
+    public function show(int $id)
+    {
+        $product = Product::find($id);
+        return $this->sendResponse($product, 'Успешно.');
     }
 }
